@@ -1,0 +1,14 @@
+<mujoco>
+  <asset>
+    <mesh name="body_visual_0" file="../meshes/body_visual_0.stl" />
+    <mesh name="body_visual_1" file="../meshes/body_visual_1.stl" />
+    <mesh name="bumper_visual_0" file="../meshes/bumper_visual_0.stl" />
+    <mesh name="shell_0" file="../meshes/shell_0.stl" />
+    <mesh name="weight_block_0" file="../meshes/weight_block_0.stl" />
+    <mesh name="tower_standoff_0" file="../meshes/tower_standoff_0.stl" />
+    <mesh name="tower_sensor_plate_0" file="../meshes/tower_sensor_plate_0.stl" />
+    <mesh name="rplidar_0" file="../meshes/rplidar_0.stl" />
+    <mesh name="camera_bracket_0" file="../meshes/camera_bracket_0.stl" />
+    <mesh name="oakd_pro_0" file="../meshes/oakd_pro_0.stl" />
+  </asset>
+</mujoco>

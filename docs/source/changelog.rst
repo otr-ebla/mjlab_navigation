@@ -5,6 +5,16 @@ Changelog
 Upcoming version (not yet released)
 -----------------------------------
 
+Added
+^^^^^
+
+- Added arrow-key linear/angular velocity driving for TurtleBot4 with an on-screen
+  command display and aligned playback resets.
+
+- Added official TurtleBot4 Standard visual meshes, sensor mounting frames, and
+  optional camera, IMU, encoder, contact, and proximity sensing. Flat navigation
+  enables only the 2D LiDAR.
+
 Changed
 ^^^^^^^
 
@@ -17,6 +27,9 @@ Changed
 
 Fixed
 ^^^^^
+
+- Registered TurtleBot 4 flat navigation and migrated its scene, LiDAR, wheel
+  actions, and goal reset logic to the current mjlab APIs.
 
 - Capped ``wandb`` below 0.29, which removed the ``start_method`` setting still passed
   by ``rsl-rl-lib`` and crashed training runs launched with ``--logger wandb``.

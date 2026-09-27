@@ -1,0 +1,18 @@
+<mujoco>
+  <geom name="visual_base_link_0" type="mesh" mesh="body_visual_0" rgba="0.2571425 0.2571425 0.2571425 1" contype="0" conaffinity="0" group="2" mass="0" pos="0 0 -0.0108" quat="0.707106781 0 0 0.707106781" />
+  <geom name="visual_base_link_1" type="mesh" mesh="body_visual_1" rgba="0.1921569 0.1921569 0.1921569 1" contype="0" conaffinity="0" group="2" mass="0" pos="0 0 -0.0108" quat="0.707106781 0 0 0.707106781" />
+  <geom name="visual_bumper_0" type="mesh" mesh="bumper_visual_0" rgba="0.1921569 0.1921569 0.1921569 1" contype="0" conaffinity="0" group="2" mass="0" pos="0 0 -0.0108" quat="1 0 0 0" />
+  <geom name="visual_shell_link_0" type="mesh" mesh="shell_0" rgba="0.10196 0.10196 0.10196 1" contype="0" conaffinity="0" group="2" mass="0" pos="0 0 0.0442" quat="0.5 0.5 0.5 0.5" />
+  <geom name="visual_front_left_bottom_weight_block_0" type="mesh" mesh="weight_block_0" rgba="0.753 0.753 0.753 1" contype="0" conaffinity="0" group="2" mass="0" pos="0.06005267 0.08758841 0.04788546" quat="1 0 0 0" />
+  <geom name="visual_front_left_top_weight_block_0" type="mesh" mesh="weight_block_0" rgba="0.753 0.753 0.753 1" contype="0" conaffinity="0" group="2" mass="0" pos="0.06005267 0.08758841 0.05688546" quat="1 0 0 0" />
+  <geom name="visual_front_right_bottom_weight_block_0" type="mesh" mesh="weight_block_0" rgba="0.753 0.753 0.753 1" contype="0" conaffinity="0" group="2" mass="0" pos="0.06005267 -0.08758841 0.04788546" quat="6.123234e-17 1 -0 -0" />
+  <geom name="visual_front_right_top_weight_block_0" type="mesh" mesh="weight_block_0" rgba="0.753 0.753 0.753 1" contype="0" conaffinity="0" group="2" mass="0" pos="0.06005267 -0.08758841 0.05688546" quat="6.123234e-17 1 -0 -0" />
+  <geom name="visual_front_left_tower_standoff_0" type="mesh" mesh="tower_standoff_0" rgba="0.19216 0.2039 0.2039 1" contype="0" conaffinity="0" group="2" mass="0" pos="0.03063 0.11431 0.19177" quat="0.707106781 0 0.707106781 0" />
+  <geom name="visual_front_right_tower_standoff_0" type="mesh" mesh="tower_standoff_0" rgba="0.19216 0.2039 0.2039 1" contype="0" conaffinity="0" group="2" mass="0" pos="0.03063 -0.11431 0.19177" quat="0.707106781 0 0.707106781 0" />
+  <geom name="visual_rear_left_tower_standoff_0" type="mesh" mesh="tower_standoff_0" rgba="0.19216 0.2039 0.2039 1" contype="0" conaffinity="0" group="2" mass="0" pos="-0.07607 0.09066 0.19177" quat="0.707106781 0 0.707106781 0" />
+  <geom name="visual_rear_right_tower_standoff_0" type="mesh" mesh="tower_standoff_0" rgba="0.19216 0.2039 0.2039 1" contype="0" conaffinity="0" group="2" mass="0" pos="-0.07607 -0.09066 0.19177" quat="0.707106781 0 0.707106781 0" />
+  <geom name="visual_tower_sensor_plate_0" type="mesh" mesh="tower_sensor_plate_0" rgba="0.101 0.101 0.101 1" contype="0" conaffinity="0" group="2" mass="0" pos="0 0 0.29677" quat="1 0 0 0" />
+  <geom name="visual_rplidar_link_0" type="mesh" mesh="rplidar_0" rgba="0.1098 0.1098 0.1098 1" contype="0" conaffinity="0" group="2" mass="0" pos="-0.04 0 0.142915" quat="0.707106781 0 0 0.707106781" />
+  <geom name="visual_oakd_camera_bracket_0" type="mesh" mesh="camera_bracket_0" rgba="0.19216 0.2039 0.2039 1" contype="0" conaffinity="0" group="2" mass="0" pos="-0.118 0 0.09677" quat="1 0 0 0" />
+  <geom name="visual_oakd_link_0" type="mesh" mesh="oakd_pro_0" rgba="0.19216 0.2039 0.2039 1" contype="0" conaffinity="0" group="2" mass="0" pos="-0.0596 0 0.19353" quat="1 0 0 0" />
+</mujoco>

@@ -1,0 +1,52 @@
+<mujoco>
+  <site name="bumper_site" size="0.002" group="4" pos="0 0 -0.0108" quat="1 0 0 0" />
+  <site name="bump_front_center_site" size="0.002" group="4" pos="0.175 0 -0.011" quat="1 0 0 0" />
+  <site name="bump_front_left_site" size="0.002" group="4" pos="0.02345 -0.0875 -0.025" quat="0.965925862 0 0 0.258818912" />
+  <site name="bump_front_right_site" size="0.002" group="4" pos="0.02345 0.0875 -0.025" quat="0.965925862 0 0 -0.258818912" />
+  <site name="bump_left_site" size="0.002" group="4" pos="0.0875 -0.15155 -0.025" quat="0.866026542 0 0 0.499998029" />
+  <site name="bump_right_site" size="0.002" group="4" pos="0.0875 0.15155 -0.025" quat="0.866026542 0 0 -0.499998029" />
+  <site name="wheel_drop_left_site" size="0.002" group="4" pos="0 0.1165 -0.0098" quat="0.707106781 -0.707106781 -0 -0" />
+  <site name="wheel_drop_right_site" size="0.002" group="4" pos="0 -0.1165 -0.0098" quat="0.707106781 -0.707106781 -0 -0" />
+  <site name="front_caster_link_site" size="0.002" group="4" pos="0.125 0 -0.0378" quat="0.707106781 -0.707106781 -0 -0" />
+  <site name="imu_link_site" size="0.002" group="4" pos="0.050613 0.043673 0.0344" quat="1 0 0 0" />
+  <site name="mouse_site" size="0.002" group="4" pos="0.1015 0.087 -0.0408" quat="0.923879533 0 0 -0.382683432" />
+  <site name="cliff_side_left_site" size="0.002" group="4" pos="0.06 0.145 -0.0308" quat="0.0840613592 -0.638905787 0.0705358555 0.761418267" />
+  <site name="cliff_side_right_site" size="0.002" group="4" pos="0.06 -0.145 -0.0308" quat="0.0840613592 0.638905787 0.0705358555 -0.761418267" />
+  <site name="cliff_front_left_site" size="0.002" group="4" pos="0.16 0.045 -0.0308" quat="0.644995563 -0.346787617 0.541215539 0.413285388" />
+  <site name="cliff_front_right_site" size="0.002" group="4" pos="0.16 -0.045 -0.0308" quat="0.644995563 0.346787617 0.541215539 -0.413285388" />
+  <site name="ir_intensity_front_center_left_site" size="0.002" group="4" pos="0.154 0 0.0072" quat="1 0 0 0" />
+  <site name="ir_intensity_front_center_right_site" size="0.002" group="4" pos="0.1396 -0.0651 0.0072" quat="0.976331956 0 0 -0.216277393" />
+  <site name="ir_intensity_front_left_site" size="0.002" group="4" pos="0.1396 0.0651 0.0072" quat="0.976331956 0 0 0.216277393" />
+  <site name="ir_intensity_front_right_site" size="0.002" group="4" pos="0.099 -0.118 0.0072" quat="0.906236907 0 0 -0.422770232" />
+  <site name="ir_intensity_left_site" size="0.002" group="4" pos="0.099 0.118 0.0072" quat="0.906236907 0 0 0.422770232" />
+  <site name="ir_intensity_right_site" size="0.002" group="4" pos="0.0399 -0.1488 0.0072" quat="0.793352409 0 0 -0.608762643" />
+  <site name="ir_intensity_side_left_site" size="0.002" group="4" pos="0.0399 0.1488 0.0072" quat="0.793352409 0 0 0.608762643" />
+  <site name="button_1_site" size="0.002" group="4" pos="0.06 0.37 0.0942" quat="0.707106781 -0 -0.707106781 -0" />
+  <site name="button_2_site" size="0.002" group="4" pos="0.06 -0.37 0.0942" quat="0.707106781 -0 -0.707106781 -0" />
+  <site name="button_power_site" size="0.002" group="4" pos="0.06 0 0.0942" quat="0.707106781 -0 -0.707106781 -0" />
+  <site name="ir_omni_site" size="0.002" group="4" pos="0.153 0 0.0492" quat="1 0 0 0" />
+  <site name="shell_link_site" size="0.002" group="4" pos="0 0 0.0442" quat="1 0 0 0" />
+  <site name="front_left_bottom_weight_block_site" size="0.002" group="4" pos="0.06005267 0.08758841 0.04788546" quat="1 0 0 0" />
+  <site name="front_left_top_weight_block_site" size="0.002" group="4" pos="0.06005267 0.08758841 0.05688546" quat="1 0 0 0" />
+  <site name="front_right_bottom_weight_block_site" size="0.002" group="4" pos="0.06005267 -0.08758841 0.04788546" quat="6.123234e-17 1 -0 -0" />
+  <site name="front_right_top_weight_block_site" size="0.002" group="4" pos="0.06005267 -0.08758841 0.05688546" quat="6.123234e-17 1 -0 -0" />
+  <site name="front_left_tower_standoff_site" size="0.002" group="4" pos="0.03063 0.11431 0.19177" quat="1 0 0 0" />
+  <site name="front_right_tower_standoff_site" size="0.002" group="4" pos="0.03063 -0.11431 0.19177" quat="1 0 0 0" />
+  <site name="rear_left_tower_standoff_site" size="0.002" group="4" pos="-0.07607 0.09066 0.19177" quat="1 0 0 0" />
+  <site name="rear_right_tower_standoff_site" size="0.002" group="4" pos="-0.07607 -0.09066 0.19177" quat="1 0 0 0" />
+  <site name="tower_sensor_plate_site" size="0.002" group="4" pos="0 0 0.29677" quat="1 0 0 0" />
+  <site name="rplidar_link_site" size="0.002" group="4" pos="-0.04 0 0.142915" quat="0.707106781 0 0 0.707106781" />
+  <site name="oakd_camera_bracket_site" size="0.002" group="4" pos="-0.118 0 0.09677" quat="1 0 0 0" />
+  <site name="oakd_link_site" size="0.002" group="4" pos="-0.0596 0 0.19353" quat="1 0 0 0" />
+  <site name="oakd_rgb_camera_frame_site" size="0.002" group="4" pos="-0.0596 0 0.19353" quat="1 0 0 0" />
+  <site name="oakd_rgb_camera_optical_frame_site" size="0.002" group="4" pos="-0.0596 0 0.19353" quat="0.5 -0.5 0.5 -0.5" />
+  <site name="oakd_left_camera_frame_site" size="0.002" group="4" pos="-0.0596 0.0375 0.19353" quat="1 0 0 0" />
+  <site name="oakd_left_camera_optical_frame_site" size="0.002" group="4" pos="-0.0596 0.0375 0.19353" quat="0.5 -0.5 0.5 -0.5" />
+  <site name="oakd_right_camera_frame_site" size="0.002" group="4" pos="-0.0596 -0.0375 0.19353" quat="1 0 0 0" />
+  <site name="oakd_right_camera_optical_frame_site" size="0.002" group="4" pos="-0.0596 -0.0375 0.19353" quat="0.5 -0.5 0.5 -0.5" />
+  <site name="oakd_imu_frame_site" size="0.002" group="4" pos="-0.0596 0 0.19353" quat="0.5 -0.5 0.5 -0.5" />
+  <site name="lidar_site" size="0.002" group="4" pos="-0.04 0 0.142915" quat="1 0 0 0" />
+  <camera name="oakd_rgb" fovy="46.826" pos="-0.0596 0 0.19353" quat="0.5 0.5 -0.5 -0.5" />
+  <camera name="oakd_left" fovy="46.826" pos="-0.0596 0.0375 0.19353" quat="0.5 0.5 -0.5 -0.5" />
+  <camera name="oakd_right" fovy="46.826" pos="-0.0596 -0.0375 0.19353" quat="0.5 0.5 -0.5 -0.5" />
+</mujoco>
