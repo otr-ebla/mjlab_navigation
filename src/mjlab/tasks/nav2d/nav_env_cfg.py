@@ -82,7 +82,7 @@ def turtlebot4_nav_env_cfg(play: bool = False) -> ManagerBasedRlEnvCfg:
     },
     sim=SimulationCfg(nconmax=32, njmax=128, mujoco=MujocoCfg(timestep=0.005)),
     decimation=10,
-    episode_length_s=30.0,
+    episode_length_s=1e9 if play else 30.0,
     viewer=ViewerConfig(
       entity_name="robot",
       body_name="base_link",
@@ -107,7 +107,7 @@ def turtlebot4_office_nav_env_cfg(play: bool = False) -> ManagerBasedRlEnvCfg:
   cfg.events["reset_office_episode"] = EventTermCfg(
     func=nav_mdp.reset_office_navigation_episode, mode="reset"
   )
-  cfg.episode_length_s = 35.0
+  cfg.episode_length_s = 1e9 if play else 35.0
   cfg.viewer.distance = 14.0 if play else 8.0
   cfg.viewer.elevation = -45.0 if play else -20.0
   return cfg

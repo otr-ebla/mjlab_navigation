@@ -6,6 +6,7 @@ The source checkouts are read-only. No ROS installation is required.
 """
 
 import argparse
+import importlib
 import re
 import shutil
 import tempfile
@@ -15,7 +16,6 @@ from pathlib import Path
 import collada
 import numpy as np
 import trimesh
-import xacro
 
 
 def origin(element):
@@ -23,7 +23,9 @@ def origin(element):
   if element is not None:
     xyz = np.fromstring(element.get("xyz", "0 0 0"), sep=" ")
     rpy = np.fromstring(element.get("rpy", "0 0 0"), sep=" ")
-    transform = trimesh.transformations.euler_matrix(*rpy)
+    transform = trimesh.transformations.euler_matrix(
+      float(rpy[0]), float(rpy[1]), float(rpy[2])
+    )
     transform[:3, 3] = xyz
   return transform
 
@@ -45,6 +47,7 @@ def write_xml(root, path):
 
 
 def main():
+  xacro = importlib.import_module("xacro")
   parser = argparse.ArgumentParser(description=__doc__)
   parser.add_argument("turtlebot4", type=Path)
   parser.add_argument("create3", type=Path)
@@ -79,7 +82,13 @@ def main():
   while joints:
     remaining = []
     for joint in joints:
-      parent, child = joint.find("parent").get("link"), joint.find("child").get("link")
+      parent_element = joint.find("parent")
+      child_element = joint.find("child")
+      if parent_element is None or child_element is None:
+        raise ValueError("Joint is missing a parent or child")
+      parent, child = parent_element.get("link"), child_element.get("link")
+      if parent is None or child is None:
+        raise ValueError("Joint is missing a parent or child link name")
       if parent not in transforms:
         remaining.append(joint)
         continue
@@ -105,12 +114,17 @@ def main():
       mesh_element = visual.find("geometry/mesh")
       if mesh_element is None:
         continue
-      uri = mesh_element.get("filename").removeprefix("package://")
+      filename = mesh_element.get("filename")
+      if filename is None:
+        raise ValueError("Visual mesh is missing a filename")
+      uri = filename.removeprefix("package://")
       package, relative = uri.split("/", 1)
       path = packages[package] / relative
       if uri not in converted:
         pieces = []
         dae = collada.Collada(str(path))
+        if dae.scene is None:
+          raise ValueError(f"Mesh has no scene: {path}")
         for geometry in dae.scene.objects("geometry"):
           for primitive in geometry.primitives():
             if hasattr(primitive, "triangleset"):
@@ -128,20 +142,24 @@ def main():
             ET.SubElement(asset, "mesh", name=name, file=f"../meshes/{name}.stl")
             pieces.append((name, rgba))
         converted[uri] = pieces
+      if link_name is None:
+        raise ValueError("Link is missing a name")
       transform = shift @ transforms[link_name] @ origin(visual.find("origin"))
       for index, (mesh_name, rgba) in enumerate(converted[uri]):
         ET.SubElement(
           geoms,
           "geom",
-          name=f"visual_{link_name}_{index}",
-          type="mesh",
-          mesh=mesh_name,
-          rgba=numbers(rgba),
-          contype="0",
-          conaffinity="0",
-          group="2",
-          mass="0",
-          **pose(transform),
+          attrib={
+            "name": f"visual_{link_name}_{index}",
+            "type": "mesh",
+            "mesh": mesh_name,
+            "rgba": numbers(rgba),
+            "contype": "0",
+            "conaffinity": "0",
+            "group": "2",
+            "mass": "0",
+            **pose(transform),
+          },
         )
   for name, transform in transforms.items():
     if name in {"base_link", "left_wheel", "right_wheel"}:
@@ -149,16 +167,20 @@ def main():
     ET.SubElement(
       mounts,
       "site",
-      name=f"{name}_site",
-      size="0.002",
-      group="4",
-      **pose(shift @ transform),
+      attrib={
+        "name": f"{name}_site",
+        "size": "0.002",
+        "group": "4",
+        **pose(shift @ transform),
+      },
     )
   # LiDAR rays start at the official scan frame, facing robot +X.
   lidar_pose = shift @ transforms["rplidar_link"]
   lidar_pose[:3, :3] = np.eye(3)
   ET.SubElement(
-    mounts, "site", name="lidar_site", size="0.002", group="4", **pose(lidar_pose)
+    mounts,
+    "site",
+    attrib={"name": "lidar_site", "size": "0.002", "group": "4", **pose(lidar_pose)},
   )
   # MuJoCo camera axes: +X image right, +Y image up, -Z viewing direction.
   camera_rotation = np.eye(4)
@@ -166,7 +188,9 @@ def main():
   for channel in ("rgb", "left", "right"):
     transform = shift @ transforms[f"oakd_{channel}_camera_frame"] @ camera_rotation
     ET.SubElement(
-      mounts, "camera", name=f"oakd_{channel}", fovy="46.826", **pose(transform)
+      mounts,
+      "camera",
+      attrib={"name": f"oakd_{channel}", "fovy": "46.826", **pose(transform)},
     )
   write_xml(assets, destination / "xmls/visual_assets.xml")
   write_xml(geoms, destination / "xmls/visual_geoms.xml")

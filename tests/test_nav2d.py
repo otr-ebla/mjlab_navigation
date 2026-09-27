@@ -1,6 +1,7 @@
 """Regression checks for navigation registration, sensing, and reset state."""
 
 from types import SimpleNamespace
+from typing import Any, cast
 
 import mujoco
 import pytest
@@ -68,29 +69,35 @@ def test_navigation_gpu_rollout_and_partial_reset():
   cfg.seed = 42
   with torch.inference_mode():
     env = ManagerBasedRlEnv(cfg, device="cuda:0")
+    navigation_state = cast(Any, env)
     try:
       obs, _ = env.reset()
+      assert isinstance(obs["actor"], torch.Tensor)
       assert obs["actor"].shape == (4, 82)
       assert env.scene.sensor_context is not None
       assert not env.scene.sensor_context.has_cameras
       torch.testing.assert_close(
-        nav_mdp.goal_position_robot_frame(env).norm(dim=-1), env.prev_dist
+        nav_mdp.goal_position_robot_frame(env).norm(dim=-1), navigation_state.prev_dist
       )
       start = env.scene["robot"].data.root_link_pos_w.clone()
       actions = torch.full((4, 2), 0.5, device=env.device)
       for _ in range(20):
         obs, reward, terminated, truncated, _ = env.step(actions)
         assert torch.isfinite(reward).all()
-        assert all(torch.isfinite(value).all() for value in obs.values())
+        assert all(
+          isinstance(value, torch.Tensor) and torch.isfinite(value).all()
+          for value in obs.values()
+        )
         assert not terminated.any()
         assert not truncated.any()
       displacement = (env.scene["robot"].data.root_link_pos_w - start)[:, :2]
       assert (displacement.norm(dim=-1) > 0.02).all()
-      goals = env.goal_pos.clone()
+      goals = navigation_state.goal_pos.clone()
       env.reset(env_ids=torch.tensor([1], device=env.device))
-      torch.testing.assert_close(env.goal_pos[[0, 2, 3]], goals[[0, 2, 3]])
+      torch.testing.assert_close(navigation_state.goal_pos[[0, 2, 3]], goals[[0, 2, 3]])
       torch.testing.assert_close(
-        nav_mdp.goal_position_robot_frame(env).norm(dim=-1)[1], env.prev_dist[1]
+        nav_mdp.goal_position_robot_frame(env).norm(dim=-1)[1],
+        navigation_state.prev_dist[1],
       )
     finally:
       env.close()
